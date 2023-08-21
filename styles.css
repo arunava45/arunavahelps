@@ -4,11 +4,13 @@ body, h1, h2, p, ul {
     padding: 0;
 }
 
-/* Set a background color */
+/* Set a background color and image */
 body {
-    background-color: #f0f0f0;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    color: #333; /* Text color */
 }
 
 /* Header styles */
@@ -30,7 +32,7 @@ header p {
 
 /* Navigation styles */
 nav {
-    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem 0;
 }
 
@@ -74,6 +76,7 @@ section h2 {
 section p {
     font-size: 1.1rem;
     line-height: 1.8;
+    color: #555; /* Text color */
 }
 
 /* Accolades section styles */
@@ -92,7 +95,7 @@ section p {
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: #444;
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
 }
 
