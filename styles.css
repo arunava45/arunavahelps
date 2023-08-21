@@ -4,21 +4,21 @@ body, h1, h2, p, ul {
     padding: 0;
 }
 
-/* Set a background color and image with increased transparency */
+/* Set a background color and image with complete transparency */
 body {
     background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #fff; /* Text color */
+    color: #111; /* Dark text color */
 }
 
 /* Header styles */
 header {
     text-align: center;
     padding: 4rem 0;
-    background-color: rgba(68, 51, 122, 0.7); /* Purple with opacity */
-    color: #fff;
+    background-color: rgba(68, 51, 122, 0.1); /* Purple with complete transparency */
+    color: #111; /* Dark text color */
 }
 
 header h1 {
@@ -32,7 +32,7 @@ header p {
 
 /* Navigation styles */
 nav {
-    background-color: rgba(68, 51, 122, 0.6); /* Purple with opacity */
+    background-color: rgba(68, 51, 122, 0.1); /* Purple with complete transparency */
     padding: 1rem 0;
 }
 
@@ -48,7 +48,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #111; /* Dark text color */
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -60,14 +60,14 @@ nav ul li a:hover {
 /* Main content styles */
 main {
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
+    background-color: rgba(255, 255, 255, 0.1); /* White with complete transparency */
     border-radius: 10px;
 }
 
 section {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light gray with opacity */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Light gray with transparency */
 }
 
 section h2 {
@@ -79,7 +79,7 @@ section h2 {
 section p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #777; /* Light gray */
+    color: #555; /* Slightly darker gray text color */
 }
 
 /* Accolades section styles */
@@ -98,8 +98,8 @@ section p {
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: rgba(68, 51, 122, 0.6); /* Purple with opacity */
-    color: #fff;
+    background-color: rgba(68, 51, 122, 0.1); /* Purple with complete transparency */
+    color: #111; /* Dark text color */
 }
 
 /* Responsive styles */
