@@ -74,6 +74,11 @@ section p {
 .accolades-container img {
     width: 100%;
     border-radius: 10px;
+    transition: transform 0.3s ease; /* Add a transition for the transform property */
+}
+
+.accolades-container img:hover {
+    transform: scale(1.05); /* Scale up the image a little on hover */
 }
 
 /* Footer styles */
