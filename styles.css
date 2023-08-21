@@ -4,7 +4,7 @@ body, h1, h2, p, ul {
     padding: 0;
 }
 
-/* Set a background color and image */
+/* Set a background color and image with increased transparency */
 body {
     background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -17,7 +17,7 @@ body {
 header {
     text-align: center;
     padding: 4rem 0;
-    background-color: #44337a; /* Purple */
+    background-color: rgba(68, 51, 122, 0.7); /* Purple with opacity */
     color: #fff;
 }
 
@@ -32,7 +32,7 @@ header p {
 
 /* Navigation styles */
 nav {
-    background-color: rgba(68, 51, 122, 0.8); /* Purple with opacity */
+    background-color: rgba(68, 51, 122, 0.6); /* Purple with opacity */
     padding: 1rem 0;
 }
 
@@ -60,12 +60,14 @@ nav ul li a:hover {
 /* Main content styles */
 main {
     padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
+    border-radius: 10px;
 }
 
 section {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light gray with opacity */
 }
 
 section h2 {
@@ -96,7 +98,7 @@ section p {
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: rgba(68, 51, 122, 0.8); /* Purple with opacity */
+    background-color: rgba(68, 51, 122, 0.6); /* Purple with opacity */
     color: #fff;
 }
 
