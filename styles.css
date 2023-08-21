@@ -55,5 +55,5 @@ footer {
 
 /* Add spacing and display images vertically */
 .image-container {
-    margin-top: 20px; /* Add spacing above the images */
+    margin-top: 40px; /* Adjust this value to increase the gap between images */
 }
