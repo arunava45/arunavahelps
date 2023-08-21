@@ -52,3 +52,9 @@ footer {
     background-color: #444;
     color: #fff;
 }
+
+/* Add gap between images */
+.image-container {
+    display: flex;
+    gap: 20px; /* Adjust this value to control the spacing */
+}
