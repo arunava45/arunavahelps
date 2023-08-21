@@ -53,8 +53,7 @@ footer {
     color: #fff;
 }
 
-/* Add gap between images */
+/* Add spacing and display images vertically */
 .image-container {
-    display: flex;
-    gap: 20px; /* Adjust this value to control the spacing */
+    margin-top: 20px; /* Add spacing above the images */
 }
