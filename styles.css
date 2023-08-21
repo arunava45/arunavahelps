@@ -5,6 +5,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333; /* Dark text color */
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent background color */
 }
 
 /* Style the header */
@@ -21,48 +22,7 @@ nav {
     padding: 1rem 0;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff; /* White text color */
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #ffc107; /* Yellow color on hover */
-}
-
-/* Style the main content */
-main {
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.8); /* White with transparency */
-    border-radius: 10px;
-}
-
-section {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light gray with transparency */
-}
-
-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #44337a; /* Purple */
-}
-
-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555; /* Slightly darker gray text color */
-}
+/* ... Other styles ... */
 
 /* Accolades section styles */
 .accolades-container {
@@ -74,11 +34,7 @@ section p {
 .accolades-container img {
     width: 100%;
     border-radius: 10px;
-    transition: transform 0.3s ease; /* Add a transition for the transform property */
-}
-
-.accolades-container img:hover {
-    transform: scale(1.05); /* Scale up the image a little on hover */
+    transition: transform 0.3s ease;
 }
 
 /* Footer styles */
@@ -93,7 +49,6 @@ footer {
 @media (max-width: 768px) {
     /* Your existing responsive styles remain unchanged */
 }
-/* Your existing styles */
 
 /* Add styles for the lightbox overlay */
 .lightbox-overlay {
