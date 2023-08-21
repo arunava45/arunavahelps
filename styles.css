@@ -40,10 +40,11 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    gap: 2rem; /* Equal spacing between tabs */
 }
 
 nav ul li {
-    margin-right: 2rem;
+    margin-right: 0;
 }
 
 nav ul li a {
@@ -107,6 +108,7 @@ footer {
     nav ul {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
     }
 
     nav ul li {
