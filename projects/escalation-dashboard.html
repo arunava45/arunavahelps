@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escalation Insights Dashboard | Arunava Bagal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: #1f2937;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 12px 40px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .title-block h1 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .title-block p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .back-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-link:hover {
+      border-color: var(--accent);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 14px 16px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 14px 26px rgba(15, 23, 42, 0.85);
+    }
+
+    .card h2 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .card p.description {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Upload area */
+    .upload-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    input[type="file"] {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Summary cards */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .summary-card {
+      background: #020617;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .summary-value {
+      font-size: 18px;
+    }
+
+    .summary-pill {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .summary-value.accent {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Layout grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    canvas {
+      max-width: 100%;
+    }
+
+    /* Top categories table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 6px 4px;
+      text-align: left;
+    }
+
+    th {
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    tr + tr td {
+      border-top: 1px solid #0b1220;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .status-ok {
+      color: #22c55e;
+    }
+
+    .status-warn {
+      color: #f97316;
+    }
+
+    .status-bad {
+      color: #f97373;
+    }
+
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .summary-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="title-block">
+        <h1>Escalation Insights Dashboard</h1>
+        <p>
+          Upload a CSV export of your tickets to see escalation trends, repeat issues, and resolution performance.
+        </p>
+      </div>
+      <a class="back-link" href="../index.html">
+        ← Back to Portfolio
+      </a>
+    </header>
+
+    <!-- Upload & Summary -->
+    <section class="card">
+      <h2>1. Upload ticket data</h2>
+      <p class="description">
+        Expected columns: <code>ticket_id, created_at, closed_at, product, severity, category, is_escalation, team, region</code>.
+      </p>
+      <div class="upload-row">
+        <input type="file" id="fileInput" accept=".csv" />
+        <span id="fileStatus" class="hint">No file selected.</span>
+      </div>
+      <div class="hint">
+        Tip: export from JIRA / ServiceNow as CSV, or use a sample CSV matching the expected header.
+      </div>
+
+      <div class="summary-grid" id="summaryGrid">
+        <div class="summary-card">
+          <div class="summary-label">Total Tickets</div>
+          <div class="summary-value" id="totalTickets">–</div>
+          <div class="summary-pill" id="totalTicketsHint"></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Escalations</div>
+          <div class="summary-value" id="totalEscalations">–</div>
+          <div class="summary-pill" id="escalationRate">–</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Avg Resolution Time (hrs)</div>
+          <div class="summary-value" id="avgResolution">–</div>
+          <div class="summary-pill" id="resolutionHint"></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Top Category</div>
+          <div class="summary-value accent" id="topCategory">–</div>
+          <div class="summary-pill" id="topCategoryCount"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts & Top categories -->
+    <section class="grid-2">
+      <div class="card">
+        <h2>2. Escalations over time</h2>
+        <p class="description">
+          Monthly escalations based on <code>created_at</code>. Helps you spot spikes after launches, policy changes, or incidents.
+        </p>
+        <canvas id="timeChart" height="180"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>3. Top recurring categories</h2>
+        <p class="description">
+          Issues with the highest escalation volume, grouped by <code>category</code>.
+        </p>
+        <canvas id="categoryChart" height="160"></canvas>
+        <table id="categoryTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Escalations</th>
+              <th>% of Escalations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How I’d use this in a real role</h2>
+      <p class="description">
+        In a live environment, this dashboard would be wired to scheduled exports or an API to help
+        CS / Support / Partner Ops leadership:
+      </p>
+      <ul style="font-size:13px;color:var(--muted);margin-left:18px;margin-top:6px;">
+        <li>Track escalation rate by month and detect problematic release windows.</li>
+        <li>Identify top recurring root-causes to prioritise SOPs, training, or product fixes.</li>
+        <li>Monitor resolution time and intervene when SLAs are at risk.</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const fileStatus = document.getElementById("fileStatus");
+
+    const totalTicketsEl = document.getElementById("totalTickets");
+    const totalTicketsHintEl = document.getElementById("totalTicketsHint");
+    const totalEscalationsEl = document.getElementById("totalEscalations");
+    const escalationRateEl = document.getElementById("escalationRate");
+    const avgResolutionEl = document.getElementById("avgResolution");
+    const resolutionHintEl = document.getElementById("resolutionHint");
+    const topCategoryEl = document.getElementById("topCategory");
+    const topCategoryCountEl = document.getElementById("topCategoryCount");
+
+    const timeCtx = document.getElementById("timeChart").getContext("2d");
+    const categoryCtx = document.getElementById("categoryChart").getContext("2d");
+    const categoryTableBody = document.querySelector("#categoryTable tbody");
+
+    let timeChart = null;
+    let categoryChart = null;
+
+    fileInput.addEventListener("change", handleFileSelect);
+
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) {
+        fileStatus.textContent = "No file selected.";
+        return;
+      }
+      fileStatus.textContent = `Loading: ${file.name}…`;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const csvText = event.target.result;
+          const rows = parseCSV(csvText);
+          const data = normalizeData(rows);
+          updateDashboard(data);
+          fileStatus.textContent = `Loaded ${data.length} rows from ${file.name}`;
+        } catch (err) {
+          console.error(err);
+          fileStatus.textContent = "Error parsing CSV. Please check the format.";
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Simple CSV parser (no quoted commas support – good enough for clean exports)
+    function parseCSV(text) {
+      const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+      if (lines.length <= 1) return [];
+      const headers = lines[0].split(",").map(h => h.trim());
+      return lines.slice(1).map(line => {
+        const parts = line.split(",");
+        const row = {};
+        headers.forEach((h, i) => {
+          row[h] = (parts[i] || "").trim();
+        });
+        return row;
+      });
+    }
+
+    function normalizeData(rows) {
+      // Expecting specific header names
+      return rows
+        .map(row => {
+          const created = parseDate(row.created_at);
+          const closed = parseDate(row.closed_at);
+          const isEsc = normalizeBool(row.is_escalation);
+          let resolutionHours = null;
+          if (created && closed && !isNaN(created) && !isNaN(closed)) {
+            const diffMs = closed - created;
+            resolutionHours = diffMs / 36e5; // ms -> hours
+          }
+          return {
+            ticket_id: row.ticket_id || "",
+            created_at: created,
+            closed_at: closed,
+            product: row.product || "",
+            severity: row.severity || "",
+            category: row.category || "Uncategorised",
+            is_escalation: isEsc,
+            team: row.team || "",
+            region: row.region || "",
+            resolutionHours
+          };
+        })
+        .filter(row => row.created_at instanceof Date && !isNaN(row.created_at));
+    }
+
+    function parseDate(value) {
+      if (!value) return null;
+      // Let JS Date handle ISO / YYYY-MM-DD
+      const d = new Date(value);
+      return isNaN(d) ? null : d;
+    }
+
+    function normalizeBool(value) {
+      if (!value) return false;
+      const v = String(value).trim().toLowerCase();
+      return v === "yes" || v === "y" || v === "true" || v === "1";
+    }
+
+    function updateDashboard(data) {
+      if (!data || data.length === 0) {
+        resetDashboard();
+        return;
+      }
+
+      const totalTickets = data.length;
+      const escalations = data.filter(d => d.is_escalation);
+      const totalEscalations = escalations.length;
+      const escalationRate = totalTickets > 0 ? (totalEscalations / totalTickets) * 100 : 0;
+
+      const resolutions = data.map(d => d.resolutionHours).filter(v => typeof v === "number" && v >= 0);
+      const avgResolution = resolutions.length
+        ? resolutions.reduce((a, b) => a + b, 0) / resolutions.length
+        : null;
+
+      // Group by month (YYYY-MM) for escalations only
+      const byMonth = {};
+      escalations.forEach(d => {
+        if (!d.created_at) return;
+        const ym = `${d.created_at.getFullYear()}-${String(d.created_at.getMonth() + 1).padStart(2, "0")}`;
+        byMonth[ym] = (byMonth[ym] || 0) + 1;
+      });
+
+      const monthKeys = Object.keys(byMonth).sort();
+      const monthValues = monthKeys.map(k => byMonth[k]);
+
+      // Group by category (escalations only)
+      const byCategory = {};
+      escalations.forEach(d => {
+        const cat = d.category || "Uncategorised";
+        byCategory[cat] = (byCategory[cat] || 0) + 1;
+      });
+      const categoriesSorted = Object.entries(byCategory)
+        .sort((a, b) => b[1] - a[1]);
+
+      // Summary cards
+      totalTicketsEl.textContent = totalTickets.toString();
+      totalTicketsHintEl.textContent = totalTickets > 0
+        ? "Total tickets in this dataset"
+        : "";
+
+      totalEscalationsEl.textContent = totalEscalations.toString();
+      escalationRateEl.textContent = totalTickets > 0
+        ? `${escalationRate.toFixed(1)}% escalation rate`
+        : "–";
+
+      if (avgResolution !== null) {
+        avgResolutionEl.textContent = avgResolution.toFixed(1);
+        resolutionHintEl.textContent = "Average from created_at to closed_at";
+      } else {
+        avgResolutionEl.textContent = "–";
+        resolutionHintEl.textContent = "Missing or invalid dates";
+      }
+
+      if (categoriesSorted.length > 0) {
+        const [topName, topCount] = categoriesSorted[0];
+        topCategoryEl.textContent = topName;
+        const pct = totalEscalations > 0 ? (topCount / totalEscalations) * 100 : 0;
+        topCategoryCountEl.textContent = `${topCount} escalations • ${pct.toFixed(1)}% of escalations`;
+      } else {
+        topCategoryEl.textContent = "–";
+        topCategoryCountEl.textContent = "";
+      }
+
+      // Time chart
+      if (timeChart) timeChart.destroy();
+      timeChart = new Chart(timeCtx, {
+        type: "line",
+        data: {
+          labels: monthKeys,
+          datasets: [{
+            label: "Escalations",
+            data: monthValues,
+            tension: 0.25
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              ticks: { color: "#9ca3af", maxRotation: 45, minRotation: 0 },
+              grid: { display: false }
+            },
+            y: {
+              ticks: { color: "#9ca3af", precision: 0 },
+              grid: { color: "#111827" }
+            }
+          }
+        }
+      });
+
+      // Category chart (top 6)
+      const topN = 6;
+      const topCats = categoriesSorted.slice(0, topN);
+      const catLabels = topCats.map(([k]) => k);
+      const catValues = topCats.map(([, v]) => v);
+
+      if (categoryChart) categoryChart.destroy();
+      categoryChart = new Chart(categoryCtx, {
+        type: "bar",
+        data: {
+          labels: catLabels,
+          datasets: [{
+            label: "Escalations",
+            data: catValues
+          }]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              ticks: { color: "#9ca3af", precision: 0 },
+              grid: { color: "#111827" }
+            },
+            y: {
+              ticks: { color: "#9ca3af" },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+      // Category table
+      categoryTableBody.innerHTML = "";
+      categoriesSorted.forEach(([cat, count]) => {
+        const pct = totalEscalations > 0 ? (count / totalEscalations) * 100 : 0;
+        const tr = document.createElement("tr");
+        const tdCat = document.createElement("td");
+        const tdCount = document.createElement("td");
+        const tdPct = document.createElement("td");
+
+        tdCat.textContent = cat;
+        tdCount.textContent = count.toString();
+        tdPct.textContent = `${pct.toFixed(1)}%`;
+
+        tr.appendChild(tdCat);
+        tr.appendChild(tdCount);
+        tr.appendChild(tdPct);
+        categoryTableBody.appendChild(tr);
+      });
+    }
+
+    function resetDashboard() {
+      totalTicketsEl.textContent = "–";
+      totalTicketsHintEl.textContent = "";
+      totalEscalationsEl.textContent = "–";
+      escalationRateEl.textContent = "–";
+      avgResolutionEl.textContent = "–";
+      resolutionHintEl.textContent = "";
+      topCategoryEl.textContent = "–";
+      topCategoryCountEl.textContent = "";
+      categoryTableBody.innerHTML = "";
+      if (timeChart) timeChart.destroy();
+      if (categoryChart) categoryChart.destroy();
+    }
+  </script>
+</body>
+</html>
