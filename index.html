@@ -1,56 +1,867 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <title>ArunavaHelps - Support Professional</title>
+  <meta charset="UTF-8" />
+  <title>Arunava Bagal | Customer Support Lead & Partner Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Arunava Bagal, Customer Support Lead & Partner Operations professional with experience at Oracle and Amazon." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1e293b;
+      --shadow-soft: 0 20px 30px rgba(15, 23, 42, 0.8);
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #020617 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      background: radial-gradient(circle at top left, #38bdf8, #0f172a);
+      color: white;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .nav-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--text-muted);
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      padding: 20px 16px 60px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span {
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      border-radius: 999px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-main {
+      padding: 22px 22px 24px;
+      border-radius: 22px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 65%),
+                  var(--bg);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 650;
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 18px;
+    }
+
+    .hero-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-metadata span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 12px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 30px rgba(34, 197, 94, 0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-card {
+      padding: 14px 14px 16px;
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.9);
+      font-size: 13px;
+    }
+
+    .info-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .info-card-pill {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-muted);
+    }
+
+    /* About / Experience / Case Studies */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 2fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      padding: 16px 16px 18px;
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.85);
+      font-size: 13px;
+    }
+
+    .card + .card {
+      margin-top: 10px;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 2.1fr);
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.3);
+    }
+
+    .experience-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .experience-role {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .experience-company {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .experience-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .list {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    .list li {
+      margin-bottom: 2px;
+    }
+
+    /* Case Studies */
+
+    .case-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .case-item-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
+    }
+
+    .case-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    /* Skills */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .skills-group-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* Projects */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .project-status {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Contact */
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 12px 16px 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.98), transparent);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>ArunavaHelps</h1>
-        <p>Support Professional</p>
-    </header>
-    <nav>
-    <ul>
-        <li><a href="#about">Home</a></li>
-        <li><a href="#accolades">Accolades</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">A</div>
+        <div>
+          <div class="nav-title">Arunava Bagal</div>
+          <div class="nav-subtitle">Customer Support Lead · Partner Operations</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page">
     <main>
-        <section id="about">
-    <h2>About Me</h2>
-    <p>I am Arunava Bagal, a dedicated customer success professional based in Bengaluru, India. With over 5 years of experience in technical account management, I specialize in the end-to-end customer journey, from seamless onboarding to successful renewals. My track record includes skillfully upselling and cross-selling to boost revenue and satisfaction.
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-main">
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            Open to Customer Support Lead / Partner Operations roles
+          </div>
+          <h1 class="hero-title">
+            I help <span class="hero-highlight">support & partner teams</span> reduce escalations and scale operations.
+          </h1>
+          <p class="hero-subtitle">
+            Customer Support Lead &amp; Partner Operations professional with 7+ years at Oracle and Amazon,
+            specialising in escalation management, process optimisation, and stakeholder alignment across global teams.
+          </p>
 
-My educational background includes a Bachelor's degree in Technology as a Computer Science Engineer from Saroj Mohan Institute of Technology. Proficient in Amazon Platform operations, client relationship management, data analysis, and process improvement, I excel in mentoring teams, resolving technical issues, and facilitating client training.
+          <div class="hero-metadata">
+            <span>📍 Bengaluru, India</span>
+            <span>📞 +91 98749 26312</span>
+            <span>✉️ bagal.arunava@gmail.com</span>
+            <span>👔 7+ years in Customer Success / Support</span>
+          </div>
 
-Throughout my journey, I've held roles like Global Partner Assistance Coordinator at Oracle Solution Services and Senior Technical Account Manager at Amazon Development Center. In these positions, I've successfully driven customer satisfaction, streamlined team efficiency, and achieved revenue growth. I am committed to delivering top-tier work, ensuring client contentment, and contributing to collaborative team achievements.</p>
-</section>
-        <section id="accolades">
-            <h2>Accolades</h2>
-            <div class="accolades-container">
-                <a class="image-link" href="images/1.PNG">
-                    <img src="images/small-1.png" alt="Accolade 1">
-                </a>
-                <a class="image-link" href="images/2.PNG">
-                    <img src="images/small-2.png" alt="Accolade 2">
-                </a>
-                <a class="image-link" href="images/3.PNG">
-                    <img src="images/small-3.png" alt="Accolade 3">
-                </a>
-                <a class="image-link" href="images/4.PNG">
-                    <img src="images/small-4.png" alt="Achievement 1">
-                </a>
+          <div class="hero-actions">
+            <a href="Arunava_Bagal_2025.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+              Download Resume
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              Contact Me
+            </a>
+          </div>
+          <div class="hero-note">
+            Previously at Oracle Solution Services (Global Partner Assistance) and Amazon Development Center (Vendor Operations).
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="info-card">
+            <div class="info-card-title">Snapshot</div>
+            <ul class="list">
+              <li>Led a global partner escalation support team at Oracle.</li>
+              <li>Reduced repeat escalations by ~20–25% through SOPs and coaching.</li>
+              <li>Managed vendor operations, SLAs, and KPIs for Amazon’s marketplace.</li>
+            </ul>
+            <div class="info-card-pill">Oracle · Amazon · Global Stakeholders</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">Key Focus Areas</div>
+            <div class="pill-row">
+              <span class="pill">Escalation Management</span>
+              <span class="pill">Partner Operations</span>
+              <span class="pill">SLA & KPI Governance</span>
+              <span class="pill">Process Optimisation</span>
+              <span class="pill">Team Coaching</span>
             </div>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Get in touch with me...</p>
-        </section>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2 class="section-title"><span></span>About</h2>
+        <div class="section-subtitle">
+          A customer support and partner operations professional with a blend of hands-on escalation work and leadership experience.
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <p>
+              I am a <span class="highlight">Customer Support Lead &amp; Partner Operations specialist</span> with over 7 years of
+              experience at Oracle and Amazon. My work revolves around building reliable support processes, reducing noise through
+              clear SOPs, and ensuring that customers and partners receive consistent, high-quality resolutions.
+            </p>
+            <br />
+            <p>
+              At Oracle, I have led a global support team handling partner escalations, managed performance reviews and coaching,
+              and designed communication workflows that improved repeat escalation metrics. At Amazon, I managed vendor operations
+              to ensure SLAs and KPIs were met, while resolving customer-impact issues across cross-functional teams.
+            </p>
+            <br />
+            <p>
+              I enjoy working at the intersection of <span class="highlight">operations, support, and stakeholder management</span> —
+              translating complex issues into structured action plans, and helping teams execute them with clarity.
+            </p>
+          </div>
+          <div class="card">
+            <div class="skills-group-title">Quick Facts</div>
+            <ul class="list muted">
+              <li>Based in Bengaluru, India.</li>
+              <li>B.Tech in Computer Science (2016), WBUT.</li>
+              <li>Comfortable working with global teams across US, EU, and APAC.</li>
+              <li>Fluent in English, Bengali, and Hindi.</li>
+            </ul>
+            <br />
+            <div class="skills-group-title">What I’m looking for</div>
+            <ul class="list muted">
+              <li>Customer Support Lead / Manager roles.</li>
+              <li>Partner Operations / Customer Success Operations roles.</li>
+              <li>Roles where I can improve escalation flows and operational efficiency.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <h2 class="section-title"><span></span>Experience</h2>
+        <div class="section-subtitle">
+          A progression from hands-on vendor operations to leading partner escalation support and readiness programmes.
+        </div>
+        <div class="card">
+          <div class="experience-item">
+            <div>
+              <div class="experience-role">Global Partner Assistance Coordinator (Lead)</div>
+              <div class="experience-company">Oracle Solution Services (India) Pvt. Ltd.</div>
+              <div class="experience-meta">Jan 2021 – Oct 2025 · Bengaluru, India</div>
+            </div>
+            <div>
+              <ul class="list">
+                <li>Led a global support team handling partner escalations for Oracle products and services.</li>
+                <li>Conducted regular performance reviews and coaching to improve quality and responsiveness.</li>
+                <li>Reduced repeat escalation rate by approximately 20–25% through improved SOPs and workflows.</li>
+                <li>Designed and implemented communication workflows to streamline partner interactions.</li>
+                <li>Ensured strict adherence to SLAs, internal policies, and compliance guidelines.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div>
+              <div class="experience-role">Senior Technical Account Manager (Vendor Management)</div>
+              <div class="experience-company">Amazon Development Center India Pvt. Ltd.</div>
+              <div class="experience-meta">Jan 2018 – Jan 2021 · India</div>
+            </div>
+            <div>
+              <ul class="list">
+                <li>Managed vendor operations for SLA and KPI alignment across multiple business teams.</li>
+                <li>Resolved customer-impacting issues by coordinating with technical, business, and vendor stakeholders.</li>
+                <li>Delivered root cause analyses (RCA) and performance improvement metrics to leadership.</li>
+                <li>Coached vendor teams to streamline onboarding and reduce handling time.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES -->
+      <section id="case-studies">
+        <h2 class="section-title"><span></span>Case Studies</h2>
+        <div class="section-subtitle">
+          Selected work that highlights how I approach escalations, readiness, and operational optimisation.
+        </div>
+        <div class="case-list">
+          <div class="card">
+            <div class="case-item-title">Amazon Australia – Post-launch Optimisation & SOP Creation</div>
+            <div class="badge-row">
+              <span class="badge">Vendor Operations</span>
+              <span class="badge">Post-launch</span>
+              <span class="badge">SOPs</span>
+            </div>
+            <div class="case-meta">Duration: ~3 months · Role: Senior Technical Account Manager</div>
+            <p class="muted">
+              After the launch of Amazon Australia, there was a need to stabilise operations, reduce variability in responses,
+              and ensure vendors were aligned with marketplace standards.
+            </p>
+            <br />
+            <ul class="list">
+              <li>Collaborated with US &amp; EU teams to understand best practices and gaps in the AU setup.</li>
+              <li>Created clear SOPs for vendor handling, escalation paths, and exception scenarios.</li>
+              <li>Improved handling consistency and reduced rework, leading to smoother day-to-day operations.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="case-item-title">Oracle – Business Readiness Programme</div>
+            <div class="badge-row">
+              <span class="badge">Stakeholder Management</span>
+              <span class="badge">Product Adoption</span>
+              <span class="badge">Business Readiness</span>
+            </div>
+            <div class="case-meta">Duration: ~9 months · Role: Global Partner Assistance Coordinator</div>
+            <p class="muted">
+              Business stakeholders needed better readiness around new or evolving Oracle products to drive adoption and reduce
+              support friction.
+            </p>
+            <br />
+            <ul class="list">
+              <li>Worked with senior directors and product owners to identify readiness gaps.</li>
+              <li>Fed back partner and support insights into product and process improvements.</li>
+              <li>Drove product improvements and increased product adoption and stakeholder satisfaction by ~15%.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="case-item-title">Oracle University – Partner Training Modules</div>
+            <div class="badge-row">
+              <span class="badge">Enablement</span>
+              <span class="badge">Training Design</span>
+              <span class="badge">Partner Success</span>
+            </div>
+            <div class="case-meta">Duration: ~2 months · Role: Global Partner Assistance Coordinator</div>
+            <p class="muted">
+              Many partner escalations were linked to product misunderstandings or incorrect usage.
+              Training became a strategic lever to reduce escalations and improve adoption.
+            </p>
+            <br />
+            <ul class="list">
+              <li>Designed and implemented interactive training sessions for partners via Oracle University.</li>
+              <li>Focused on practical scenarios and common escalations to drive better self-sufficiency.</li>
+              <li>Helped improve product adoption and reduce avoidable partner tickets over time.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h2 class="section-title"><span></span>Skills</h2>
+        <div class="section-subtitle">
+          Tools, practices, and areas where I’m most effective in support and operations environments.
+        </div>
+        <div class="skills-grid">
+          <div class="card">
+            <div class="skills-group-title">Support & Operations</div>
+            <div class="pill-row">
+              <span class="pill">Customer Support</span>
+              <span class="pill">Partner Support</span>
+              <span class="pill">Incident Management</span>
+              <span class="pill">Problem Management</span>
+              <span class="pill">Change Management</span>
+              <span class="pill">Vendor Management</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="skills-group-title">Process & Governance</div>
+            <div class="pill-row">
+              <span class="pill">SLA & KPI Management</span>
+              <span class="pill">Process Optimisation</span>
+              <span class="pill">Escalation Workflows</span>
+              <span class="pill">SOP Design</span>
+              <span class="pill">ITIL-aligned Practices</span>
+              <span class="pill">Reporting & RCA</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="skills-group-title">Tools</div>
+            <div class="pill-row">
+              <span class="pill">JIRA</span>
+              <span class="pill">ServiceNow</span>
+              <span class="pill">Ticketing Platforms</span>
+              <span class="pill">Data & Metrics Tracking</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="skills-group-title">Leadership & Collaboration</div>
+            <div class="pill-row">
+              <span class="pill">Team Handling</span>
+              <span class="pill">Performance Coaching</span>
+              <span class="pill">Stakeholder Management</span>
+              <span class="pill">Cross-functional Collaboration</span>
+              <span class="pill">Partner Communication</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS / AUTOMATIONS -->
+      <section id="projects">
+        <h2 class="section-title"><span></span>Projects & Automation Ideas</h2>
+        <div class="section-subtitle">
+          A space to showcase automation and analytics projects aligned with my day-to-day work in support and operations.
+        </div>
+        <div class="projects-grid">
+          <div class="card">
+            <div class="case-item-title">Escalation Insights Dashboard</div>
+            <p class="muted">
+              A dashboard that pulls escalation data (from CSVs or exported ticket data) and highlights patterns:
+              repeat issues, teams involved, and resolution times.
+            </p>
+            <div class="project-status">Status: Planned – will visualise trends to support leadership decisions.</div>
+          </div>
+
+          <div class="card">
+            <div class="case-item-title">SLA Breach Early-warning Notifier</div>
+            <p class="muted">
+              A small script or automation that flags tickets approaching SLA breach based on age and priority,
+              sending alerts to the right queues or Slack/Email.
+            </p>
+            <div class="project-status">Status: Planned – helps teams proactively manage high-risk tickets.</div>
+          </div>
+
+          <div class="card">
+            <div class="case-item-title">Playbook & SOP Recommendation Helper</div>
+            <p class="muted">
+              A lightweight tool where agents select a scenario or keyword, and it recommends the correct SOP or
+              internal article, reducing handling and investigation time.
+            </p>
+            <div class="project-status">Status: Planned – reduces variations in how different agents handle similar issues.</div>
+          </div>
+        </div>
+        <br />
+        <p class="muted">
+          As I build these projects, I’ll add live demos or GitHub links here to show how I approach automation in support and operations.
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2 class="section-title"><span></span>Contact</h2>
+        <div class="section-subtitle">
+          If you’d like to discuss a role, collaboration, or just compare notes on partner operations and escalations, feel free to reach out.
+        </div>
+        <div class="card">
+          <div class="contact-row">
+            <a href="mailto:bagal.arunava@gmail.com" class="contact-item">
+              ✉️ <span>Email: bagal.arunava@gmail.com</span>
+            </a>
+            <span class="contact-item">
+              📞 <span>Phone: +91 98749 26312</span>
+            </span>
+            <span class="contact-item">
+              📍 <span>Bengaluru, India</span>
+            </span>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer>
-        <p>&copy; 2023 ArunavaHelps</p>
-    </footer>
-    <div class="lightbox-overlay"></div>
-    <script src="script.js"></script>
+  </div>
+
+  <footer>
+    © <span id="year"></span> Arunava Bagal · Customer Support Lead &amp; Partner Operations
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
 </body>
 </html>
